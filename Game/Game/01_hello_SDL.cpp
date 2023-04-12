@@ -6,12 +6,22 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include "Window.h"
 #include "Image.h"
+#include <map>
 
 using namespace std;
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+
+const map<SDL_KeyCode, const char*> surfaceMap = {
+	{SDL_KeyCode::SDLK_UP, "img/up.bmp"},
+	{SDL_KeyCode::SDLK_DOWN, "img/down.bmp"},
+	{SDL_KeyCode::SDLK_LEFT, "img/left.bmp"},
+	{SDL_KeyCode::SDLK_RIGHT, "img/right.bmp"},
+};
+
+const char* fallbackSurface{ "img/press.bmp" };
 
 int main(int argc, char* args[])
 {
