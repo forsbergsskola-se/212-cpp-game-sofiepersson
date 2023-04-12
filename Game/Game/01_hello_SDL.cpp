@@ -7,6 +7,8 @@ and may not be redistributed without written permission.*/
 #include "Window.h"
 #include "Image.h"
 
+using namespace std;
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -20,16 +22,11 @@ int main(int argc, char* args[])
 		return -1;
 	}
 	// Load media
-	Image image{};
+	Image image{ "hello_world.bmp" };
 	if (!image.wasSuccessful()) {
 		printf("Failed to load media!\n");
 		return -1;
 	}
-	// Apply the image
-	//SDL_BlitSurface(gHelloWorld, nullptr, gScreenSurface, nullptr);
-
-	//Update the surface
-	//SDL_UpdateWindowSurface(gWindow);
 
 	// Get window to stay up
 	SDL_Event e{};
@@ -40,6 +37,7 @@ int main(int argc, char* args[])
 				quit = true;
 			}
 		}
+		window.render(image);
 	}
 	return 0;
 }

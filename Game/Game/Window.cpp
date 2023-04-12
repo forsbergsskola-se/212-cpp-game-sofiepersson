@@ -2,35 +2,38 @@
 #include <cstdio>
 #include <SDL.h>
 
-bool Window::init(int width, int height) {
-	// Initialization flag
-	bool success = true;
-
+Window::Window(int width, int height) : success{} {
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO)) {
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-		success = false;
+		return;
 	}
-	else {
-		// Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
-		if (!gWindow) {
-			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-			success = false;
-		}
-		else {
-			// Get window surface
-			gScreenSurface = SDL_GetWindowSurface(gWindow);
-		}
+
+	// Create window
+	window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+	if (!window) {
+		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+		return;
 	}
-	return success;
+
+	// Get window surface
+	screenSurface = SDL_GetWindowSurface(window);
+	success = true;
 }
 
 Window::~Window() {
 	//Destroy window
-	SDL_DestroyWindow(gWindow);
-	gWindow = nullptr;
+	SDL_DestroyWindow(window);
+	window = nullptr;
 
 	// Quit SDL subsystems
 	SDL_Quit();
+}
+
+void Window::render(Image& image) {
+	// Apply the image
+	SDL_BlitSurface(image.getResource(), nullptr, screenSurface, nullptr);
+
+	//Update the surface
+	SDL_UpdateWindowSurface(window);
 }

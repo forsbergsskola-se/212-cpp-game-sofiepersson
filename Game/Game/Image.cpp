@@ -2,21 +2,18 @@
 #include <cstdio>
 #include <SDL.h>
 
-bool Image::loadMedia() {
-	// Loading success flag
-	bool success = true;
-
+Image::Image(const char* path) : success{} {
 	// Load splash image
-	gHelloWorld = SDL_LoadBMP("hello_world.bmp");
-	if (!gHelloWorld) {
-		printf("Unable to load image %s! SDL Error: %s\n", "hello_world.bmp", SDL_GetError());
-		success = false;
+	imageSurface = SDL_LoadBMP(path);
+	if (!imageSurface) {
+		printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
+		return;
 	}
-	return success;
+	success = true;
 }
 
 Image::~Image() {
 	//Deallocate surface
-	SDL_FreeSurface(gHelloWorld);
-	gHelloWorld = nullptr;
+	SDL_FreeSurface(imageSurface);
+	imageSurface = nullptr;
 }
