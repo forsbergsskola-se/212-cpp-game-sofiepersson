@@ -12,5 +12,5 @@ public:
 	~Image();
 	bool wasSuccessful() { return success; }
 	SDL_Surface* getResource() { return imageSurface; }
+	Image& operator =(Image& other) = delete;
 };
-

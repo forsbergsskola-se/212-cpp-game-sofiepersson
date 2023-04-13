@@ -7,6 +7,7 @@ and may not be redistributed without written permission.*/
 #include "Window.h"
 #include "Image.h"
 #include <map>
+#include <memory>
 
 using namespace std;
 
@@ -32,8 +33,8 @@ int main(int argc, char* args[])
 		return -1;
 	}
 	// Load media
-	Image image{ "hello_world.bmp" };
-	if (!image.wasSuccessful()) {
+	auto image = make_unique<Image>(fallbackSurface);
+	if (!image->wasSuccessful()) {
 		printf("Failed to load media!\n");
 		return -1;
 	}
@@ -43,11 +44,33 @@ int main(int argc, char* args[])
 	bool quit = false;
 	while (quit == false) {
 		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT) {
+			switch (e.type) {
+			case SDL_QUIT: {
 				quit = true;
+				break;
+			}
+			case SDL_KEYDOWN: {
+				if (auto result = surfaceMap.find((SDL_KeyCode)e.key.keysym.sym); result != surfaceMap.end()) {
+					auto value = *result;
+					auto imageName = value.second;
+					image = make_unique<Image>(imageName);
+					if (!image->wasSuccessful()) {
+						printf("Failed to load media!\n");
+						return -1;
+					}
+				}
+				else {
+					image = make_unique<Image>(fallbackSurface);
+					if (!image->wasSuccessful()) {
+						printf("Failed to load media!\n");
+						return -1;
+					}
+				}
+				break;
+			}
 			}
 		}
-		window.render(image);
+		window.render(image.get());
 	}
 	return 0;
 }
