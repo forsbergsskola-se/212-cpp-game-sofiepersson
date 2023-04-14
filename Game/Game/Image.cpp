@@ -2,13 +2,21 @@
 #include <cstdio>
 #include <SDL.h>
 
-Image::Image(const char* path) : success{} {
+Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) : success{} {
 	// Load splash image
-	imageSurface = SDL_LoadBMP(path);
+	auto tempSurface = SDL_LoadBMP(path);
+	if (!tempSurface) {
+		printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
+		return;
+	}
+
+	imageSurface = SDL_ConvertSurface(tempSurface, pixelFormat, 0);
+	SDL_FreeSurface(tempSurface);
 	if (!imageSurface) {
 		printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
 		return;
 	}
+
 	success = true;
 }
 

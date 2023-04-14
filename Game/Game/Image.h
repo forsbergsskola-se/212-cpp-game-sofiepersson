@@ -8,7 +8,7 @@ class Image
 
 	bool success;
 public:
-	Image(const char* path);
+	Image(const char* path, const SDL_PixelFormat* pixelFormat);
 	~Image();
 	bool wasSuccessful() { return success; }
 	SDL_Surface* getResource() { return imageSurface; }

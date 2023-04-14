@@ -1,5 +1,8 @@
 #pragma once
 #include "Image.h"
+#include <memory>
+using namespace std;
+
 class Window
 {
 	//The window we'll be rendering to
@@ -14,5 +17,6 @@ public:
 	~Window();
 	bool wasSuccessful() { return success; }
 	void render(Image* image);
+	unique_ptr<Image> loadImage(const char* path);
 };
 

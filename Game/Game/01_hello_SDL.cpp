@@ -33,7 +33,7 @@ int main(int argc, char* args[])
 		return -1;
 	}
 	// Load media
-	auto image = make_unique<Image>(fallbackSurface);
+	auto image = window.loadImage(fallbackSurface);
 	if (!image->wasSuccessful()) {
 		printf("Failed to load media!\n");
 		return -1;
@@ -54,7 +54,7 @@ int main(int argc, char* args[])
 				if (auto result = surfaceMap.find((SDL_KeyCode)e.key.keysym.sym); result != surfaceMap.end()) {
 					imgPath = result->second;
 				}
-				image = make_unique<Image>(imgPath);
+				image = window.loadImage(imgPath);
 				if (!image->wasSuccessful()) {
 					printf("Failed to load media!\n");
 					return -1;
