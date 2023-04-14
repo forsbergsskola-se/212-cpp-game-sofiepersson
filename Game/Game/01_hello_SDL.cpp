@@ -50,21 +50,14 @@ int main(int argc, char* args[])
 				break;
 			}
 			case SDL_KEYDOWN: {
+				const char* imgPath = fallbackSurface;
 				if (auto result = surfaceMap.find((SDL_KeyCode)e.key.keysym.sym); result != surfaceMap.end()) {
-					auto value = *result;
-					auto imageName = value.second;
-					image = make_unique<Image>(imageName);
-					if (!image->wasSuccessful()) {
-						printf("Failed to load media!\n");
-						return -1;
-					}
+					imgPath = result->second;
 				}
-				else {
-					image = make_unique<Image>(fallbackSurface);
-					if (!image->wasSuccessful()) {
-						printf("Failed to load media!\n");
-						return -1;
-					}
+				image = make_unique<Image>(imgPath);
+				if (!image->wasSuccessful()) {
+					printf("Failed to load media!\n");
+					return -1;
 				}
 				break;
 			}
