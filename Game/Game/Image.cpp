@@ -2,7 +2,12 @@
 #include <cstdio>
 #include <SDL.h>
 
-Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) : success{} {
+Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) :
+	success{},
+	x{},
+	y{},
+	width{ 100 },
+	height{ 100 } {
 	// Load splash image
 	auto tempSurface = SDL_LoadBMP(path);
 	if (!tempSurface) {

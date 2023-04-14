@@ -31,8 +31,14 @@ Window::~Window() {
 }
 
 void Window::render(Image* image) {
+	SDL_Rect targetRectangle{
+		image->x,
+		image->y,
+		image->width,
+		image->height
+	};
 	// Apply the image
-	SDL_BlitSurface(image->getResource(), nullptr, screenSurface, nullptr);
+	SDL_BlitScaled(image->getResource(), nullptr, screenSurface, &targetRectangle);
 
 	//Update the surface
 	SDL_UpdateWindowSurface(window);
