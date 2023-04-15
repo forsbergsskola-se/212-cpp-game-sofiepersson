@@ -27,6 +27,9 @@ const map<SDL_KeyCode, const char*> surfaceMap = {
 
 const char* fallbackSurface{ "img/press.bmp" };
 
+const unsigned int FPS{ 30 };
+const unsigned int MsPerFrame{ 1000 / FPS };
+
 int main(int argc, char* args[])
 {
 	// Start up SDL and create window
@@ -46,7 +49,11 @@ int main(int argc, char* args[])
 	// Get window to stay up
 	SDL_Event e{};
 	bool quit = false;
+
+	unsigned int frameStartMs {};
 	while (quit == false) {
+		// start the timer
+		frameStartMs = SDL_GetTicks();
 		while (SDL_PollEvent(&e)) {
 			switch (e.type) {
 			case SDL_QUIT: {
@@ -70,6 +77,13 @@ int main(int argc, char* args[])
 		window.clear();
 		window.render(image.get());
 		window.present();
+
+		// see how long we should wait so we get 30 fps
+		// fixed update
+		unsigned int frameTimeMs = SDL_GetTicks() - frameStartMs;
+		if (frameTimeMs < MsPerFrame) {
+			SDL_Delay(MsPerFrame - frameTimeMs);
+		}
 	}
 	return 0;
 }
