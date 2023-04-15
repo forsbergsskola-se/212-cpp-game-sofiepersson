@@ -16,6 +16,7 @@ public:
 	Window(int width, int height);
 	~Window();
 	bool wasSuccessful() { return success; }
+	void clear();
 	void render(Image* image);
 	unique_ptr<Image> loadImage(const char* path);
 };

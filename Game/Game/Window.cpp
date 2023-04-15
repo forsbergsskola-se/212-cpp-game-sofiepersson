@@ -47,3 +47,8 @@ void Window::render(Image* image) {
 unique_ptr<Image> Window::loadImage(const char* path) {
 	return make_unique<Image>(path, screenSurface->format);
 }
+
+void Window::clear() {
+	static Uint32 clearColor{ SDL_MapRGB(screenSurface->format, 0, 0, 0) };
+	SDL_FillRect(screenSurface, nullptr, clearColor);
+}
