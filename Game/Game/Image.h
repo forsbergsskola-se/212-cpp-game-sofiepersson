@@ -6,7 +6,7 @@ class Image
 	// The image we will load and show on the screen
 	SDL_Surface* imageSurface{};
 
-	bool success;
+	bool success{};
 public:
 	int x, y, width, height;
 

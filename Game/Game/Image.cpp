@@ -1,6 +1,7 @@
 #include "Image.h"
 #include <cstdio>
 #include <SDL.h>
+#include <SDL_image.h>
 
 Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) :
 	success{},
@@ -9,9 +10,9 @@ Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) :
 	width{ 100 },
 	height{ 100 } {
 	// Load splash image
-	auto tempSurface = SDL_LoadBMP(path);
+	auto tempSurface = IMG_Load(path);
 	if (!tempSurface) {
-		printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
+		printf("Unable to load image %s! SDL Error: %s\n", path, IMG_GetError());
 		return;
 	}
 

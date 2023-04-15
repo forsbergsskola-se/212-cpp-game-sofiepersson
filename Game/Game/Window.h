@@ -11,7 +11,7 @@ class Window
 	//The surface contained by the window
 	SDL_Surface* screenSurface{};
 
-	bool success;
+	bool success{};
 public:
 	Window(int width, int height);
 	~Window();

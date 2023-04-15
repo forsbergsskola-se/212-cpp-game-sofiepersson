@@ -8,8 +8,11 @@ and may not be redistributed without written permission.*/
 #include "Image.h"
 #include <map>
 #include <memory>
+#include <SDL_image.h>
 
 using namespace std;
+
+void initImage();
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -32,6 +35,7 @@ int main(int argc, char* args[])
 		printf("Failed to initialize!\n");
 		return -1;
 	}
+	initImage();
 	// Load media
 	auto image = window.loadImage(fallbackSurface);
 	if (!image->wasSuccessful()) {
@@ -66,4 +70,13 @@ int main(int argc, char* args[])
 		window.render(image.get());
 	}
 	return 0;
+}
+
+void initImage() {
+	//Initialize PNG loading
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+	{
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+	}
 }
