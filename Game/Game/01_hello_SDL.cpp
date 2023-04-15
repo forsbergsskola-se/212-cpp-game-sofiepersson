@@ -9,6 +9,8 @@ and may not be redistributed without written permission.*/
 #include <map>
 #include <memory>
 #include <SDL_image.h>
+#include <vector>
+#include "GameObject.h"
 
 using namespace std;
 
@@ -38,6 +40,9 @@ int main(int argc, char* args[])
 		printf("Failed to initialize!\n");
 		return -1;
 	}
+
+	vector<GameObject*> gameObjects{};
+
 	initImage();
 	// Load media
 	auto image = window.loadImage(fallbackSurface);
@@ -75,7 +80,11 @@ int main(int argc, char* args[])
 			}
 		}
 		window.clear();
-		window.render(image.get());
+		
+		for (auto gameObject : gameObjects) {
+			gameObject->render(&window);
+		}
+
 		window.present();
 
 		// see how long we should wait so we get 30 fps
