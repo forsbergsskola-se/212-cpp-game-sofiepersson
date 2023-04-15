@@ -69,6 +69,7 @@ int main(int argc, char* args[])
 		}
 		window.clear();
 		window.render(image.get());
+		window.present();
 	}
 	return 0;
 }

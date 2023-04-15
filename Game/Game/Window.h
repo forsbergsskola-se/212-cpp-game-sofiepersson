@@ -17,6 +17,7 @@ public:
 	~Window();
 	bool wasSuccessful() { return success; }
 	void clear();
+	void present();
 	void render(Image* image);
 	unique_ptr<Image> loadImage(const char* path);
 };
