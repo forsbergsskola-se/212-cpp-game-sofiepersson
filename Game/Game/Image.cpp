@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) :
+Image::Image(const char* path, SDL_Renderer* renderer) :
 	success{},
 	x{},
 	y{},
@@ -16,10 +16,10 @@ Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) :
 		return;
 	}
 
-	imageSurface = SDL_ConvertSurface(tempSurface, pixelFormat, 0);
+	auto texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
 	SDL_FreeSurface(tempSurface);
-	if (!imageSurface) {
-		printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
+	if (!texture) {
+		printf("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
 		return;
 	}
 
@@ -28,6 +28,6 @@ Image::Image(const char* path, const SDL_PixelFormat* pixelFormat) :
 
 Image::~Image() {
 	//Deallocate surface
-	SDL_FreeSurface(imageSurface);
-	imageSurface = nullptr;
+	SDL_DestroyTexture(texture);
+	texture = nullptr;
 }

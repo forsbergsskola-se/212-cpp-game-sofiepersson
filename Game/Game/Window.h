@@ -10,6 +10,7 @@ class Window
 
 	//The surface contained by the window
 	SDL_Surface* screenSurface{};
+	SDL_Renderer* renderer{};
 
 	bool success{};
 public:
