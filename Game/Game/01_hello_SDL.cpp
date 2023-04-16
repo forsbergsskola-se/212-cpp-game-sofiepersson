@@ -13,6 +13,7 @@ and may not be redistributed without written permission.*/
 #include "GameObject.h"
 #include "Dog.h"
 #include "BoneUpgrade.h"
+#include "ToyUpgrade.h"
 
 using namespace std;
 
@@ -52,6 +53,9 @@ int main(int argc, char* args[])
 
 	BoneUpgrade* boneUpgrade = new BoneUpgrade{ &window, dog };
 	gameObjects.push_back(boneUpgrade);
+
+	ToyUpgrade* toyUpgrade = new ToyUpgrade{ &window, dog };
+	gameObjects.push_back(toyUpgrade);
 
 	// Get window to stay up
 	SDL_Event e{};
