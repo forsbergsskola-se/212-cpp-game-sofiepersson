@@ -16,7 +16,7 @@ Image::Image(const char* path, SDL_Renderer* renderer) :
 		return;
 	}
 
-	auto texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+	texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
 	SDL_FreeSurface(tempSurface);
 	if (!texture) {
 		printf("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
