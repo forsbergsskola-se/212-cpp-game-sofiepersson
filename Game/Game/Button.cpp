@@ -16,7 +16,6 @@ void Button::handleEvent(SDL_Event* e) {
     //If mouse event happened
     if (e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
     {
-        cout << "Mouse event" << endl;
         //Get mouse position
         int x, y;
         SDL_GetMouseState(&x, &y);
@@ -35,28 +34,23 @@ void Button::handleEvent(SDL_Event* e) {
         if (x < image->x)
         {
             inside = false;
-            cout << "Left" << endl;
         }
         //Mouse is right of the button
         else if (x > image->x + image->width)
         {
             inside = false;
-            cout << "right" << endl;
         }
         //Mouse above the button
         else if (y < image->y)
         {
             inside = false;
-            cout << "Above" << endl;
         }
         //Mouse below the button
         else if (y > image->y + image->height)
         {
             inside = false;
-            cout << "Below" << endl;
         }
         if (inside) {
-            cout << "Pressed Ludde!" << endl;
         }
     }
 }
