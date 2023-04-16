@@ -62,16 +62,14 @@ int main(int argc, char* args[])
 		}
 
 		while (SDL_PollEvent(&e)) {
+			for (auto gameObject : gameObjects) {
+				if (Button* button = dynamic_cast<Button*>(gameObject)) {
+					button->handleEvent(&e);
+				}
+			}
 			switch (e.type) {
 			case SDL_QUIT: {
 				quit = true;
-				break;
-			}
-			case SDL_KEYDOWN: {
-				const char* imgPath = fallbackSurface;
-				if (auto result = surfaceMap.find((SDL_KeyCode)e.key.keysym.sym); result != surfaceMap.end()) {
-					imgPath = result->second;
-				}
 				break;
 			}
 			}

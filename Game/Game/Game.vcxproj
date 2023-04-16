@@ -168,12 +168,14 @@ copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(TargetDir
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="01_hello_SDL.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Dog.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Dog.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Image.h" />
