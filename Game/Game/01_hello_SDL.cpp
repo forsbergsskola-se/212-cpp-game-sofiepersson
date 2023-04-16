@@ -11,6 +11,7 @@ and may not be redistributed without written permission.*/
 #include <SDL_image.h>
 #include <vector>
 #include "GameObject.h"
+#include "Dog.h"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ const unsigned int MsPerFrame{ 1000 / FPS };
 
 int main(int argc, char* args[])
 {
+	initImage();
 	// Start up SDL and create window
 	Window window{ SCREEN_WIDTH, SCREEN_HEIGHT };
 	if (!window.wasSuccessful()) {
@@ -42,14 +44,9 @@ int main(int argc, char* args[])
 	}
 
 	vector<GameObject*> gameObjects{};
-
-	initImage();
+	
 	// Load media
-	auto image = window.loadImage(fallbackSurface);
-	if (!image->wasSuccessful()) {
-		printf("Failed to load media!\n");
-		return -1;
-	}
+	gameObjects.push_back(new Dog{ &window });
 
 	// Get window to stay up
 	SDL_Event e{};
@@ -59,6 +56,11 @@ int main(int argc, char* args[])
 	while (quit == false) {
 		// start the timer
 		frameStartMs = SDL_GetTicks();
+
+		for (auto gameObject : gameObjects) {
+			gameObject->update();
+		}
+
 		while (SDL_PollEvent(&e)) {
 			switch (e.type) {
 			case SDL_QUIT: {
@@ -69,11 +71,6 @@ int main(int argc, char* args[])
 				const char* imgPath = fallbackSurface;
 				if (auto result = surfaceMap.find((SDL_KeyCode)e.key.keysym.sym); result != surfaceMap.end()) {
 					imgPath = result->second;
-				}
-				image = window.loadImage(imgPath);
-				if (!image->wasSuccessful()) {
-					printf("Failed to load media!\n");
-					return -1;
 				}
 				break;
 			}
