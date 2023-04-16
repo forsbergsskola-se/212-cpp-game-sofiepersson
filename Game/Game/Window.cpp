@@ -51,7 +51,7 @@ unique_ptr<Image> Window::loadImage(const char* path) {
 }
 
 void Window::clear() {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 150, 99, 5, 255);
 	SDL_RenderClear(renderer);
 }
 
