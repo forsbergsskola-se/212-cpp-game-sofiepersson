@@ -12,6 +12,7 @@ and may not be redistributed without written permission.*/
 #include <vector>
 #include "GameObject.h"
 #include "Dog.h"
+#include "BoneUpgrade.h"
 
 using namespace std;
 
@@ -46,7 +47,11 @@ int main(int argc, char* args[])
 	vector<GameObject*> gameObjects{};
 	
 	// Load media
-	gameObjects.push_back(new Dog{ &window });
+	Dog* dog = new Dog{ &window };
+	gameObjects.push_back(dog);
+
+	BoneUpgrade* boneUpgrade = new BoneUpgrade{ &window, dog };
+	gameObjects.push_back(boneUpgrade);
 
 	// Get window to stay up
 	SDL_Event e{};

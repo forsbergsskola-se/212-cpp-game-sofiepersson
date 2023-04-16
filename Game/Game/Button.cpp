@@ -32,27 +32,31 @@ void Button::handleEvent(SDL_Event* e) {
         //Mouse is left of the button
         if (x < image->x)
         {
-            inside = false;
+            clickInside = false;
+            return;
         }
         //Mouse is right of the button
         else if (x > image->x + image->width)
         {
-            inside = false;
+            clickInside = false;
+            return;
         }
         //Mouse above the button
         else if (y < image->y)
         {
-            inside = false;
+            clickInside = false;
+            return;
         }
         //Mouse below the button
         else if (y > image->y + image->height)
         {
-            inside = false;
+            clickInside = false;
+            return;
         }
-        inside = true;
+        clickInside = true;
     }
     if (e->type == SDL_MOUSEBUTTONUP) {
         buttonPressed = false;
-        inside = false;
+        clickInside = false;
     }
 }

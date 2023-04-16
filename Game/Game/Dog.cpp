@@ -9,7 +9,7 @@ void Dog::update() {
 
 void Dog::handleEvent(SDL_Event* e) {
 	Button::handleEvent(e);
-	if (inside ) {
+	if (clickInside) {
 		heartCount += heartsOnClick;
 	}
 }

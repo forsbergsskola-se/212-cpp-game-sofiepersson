@@ -5,11 +5,11 @@ class Button :
 {
 protected:
     //Check if mouse is in button
-    bool inside{ false };
+    bool clickInside{ false };
     bool buttonPressed{ false };
 public:
     virtual void update() = 0;
-    Button(const char* imgPath, Window* window) : GameObject("img/Ludde1.png", window) { }
+    Button(const char* imgPath, Window* window) : GameObject(imgPath, window) { }
     void setPosition(int x, int y);
     virtual void handleEvent(SDL_Event* e);
 };

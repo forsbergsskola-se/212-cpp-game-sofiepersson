@@ -18,5 +18,9 @@ public:
     }
     void update() override;
     void handleEvent(SDL_Event* e) override;
+    int getHeartCount() { return heartCount; }
+    int getHeartsOnClick() { return heartsOnClick; }
+    void setHeartCount(unsigned int hearts) { heartCount = hearts; }
+    void setHeartsOnClick(unsigned int hearts) { heartsOnClick = hearts; }
 };
 
