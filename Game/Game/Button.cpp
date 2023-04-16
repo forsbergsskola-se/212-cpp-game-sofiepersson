@@ -14,8 +14,9 @@ void Button::setPosition(int x, int y) {
 
 void Button::handleEvent(SDL_Event* e) {
     //If mouse event happened
-    if (e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
+    if (e->type == SDL_MOUSEBUTTONDOWN)
     {
+        buttonPressed = true;
         //Get mouse position
         int x, y;
         SDL_GetMouseState(&x, &y);
@@ -27,8 +28,6 @@ void Button::handleEvent(SDL_Event* e) {
             SDL_ClearError(); // Clear the error string after handling it
             return;
         }
-        //Check if mouse is in button
-        bool inside = true;
 
         //Mouse is left of the button
         if (x < image->x)
@@ -50,7 +49,10 @@ void Button::handleEvent(SDL_Event* e) {
         {
             inside = false;
         }
-        if (inside) {
-        }
+        inside = true;
+    }
+    if (e->type == SDL_MOUSEBUTTONUP) {
+        buttonPressed = false;
+        inside = false;
     }
 }
