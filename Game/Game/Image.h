@@ -11,6 +11,7 @@ public:
 	int x, y, width, height;
 
 	Image(const char* path, SDL_Renderer* renderer);
+	Image(SDL_Texture* texture);
 	~Image();
 	bool wasSuccessful() { return success; }
 	SDL_Texture* getResource() { return texture; }

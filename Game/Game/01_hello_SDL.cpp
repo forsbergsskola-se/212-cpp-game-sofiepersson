@@ -14,6 +14,7 @@ and may not be redistributed without written permission.*/
 #include "Dog.h"
 #include "BoneUpgrade.h"
 #include "ToyUpgrade.h"
+#include "Font.h"
 
 using namespace std;
 
@@ -57,6 +58,9 @@ int main(int argc, char* args[])
 	ToyUpgrade* toyUpgrade = new ToyUpgrade{ &window, dog };
 	gameObjects.push_back(toyUpgrade);
 
+	Font font{ "fonts/Oswald-Bold.ttf", 28 };
+	auto text = font.createText("blah blah", window.getRenderer());
+
 	// Get window to stay up
 	SDL_Event e{};
 	bool quit = false;
@@ -88,6 +92,7 @@ int main(int argc, char* args[])
 		for (auto gameObject : gameObjects) {
 			gameObject->render(&window);
 		}
+		window.render(text.get());
 
 		window.present();
 
@@ -107,5 +112,11 @@ void initImage() {
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
 		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+	}
+
+	//Initialize SDL_ttf
+	if (TTF_Init() == -1)
+	{
+		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 	}
 }

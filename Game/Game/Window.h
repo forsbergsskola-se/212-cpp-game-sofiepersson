@@ -21,5 +21,6 @@ public:
 	void present();
 	void render(Image* image);
 	unique_ptr<Image> loadImage(const char* path);
+	SDL_Renderer* getRenderer() { return renderer; }
 };
 

@@ -26,6 +26,14 @@ Image::Image(const char* path, SDL_Renderer* renderer) :
 	success = true;
 }
 
+Image::Image(SDL_Texture* texture) :
+	success{},
+	x{},
+	y{},
+	width{ 100 },
+	height{ 100 },
+	texture { texture } {}
+
 Image::~Image() {
 	//Deallocate surface
 	SDL_DestroyTexture(texture);
