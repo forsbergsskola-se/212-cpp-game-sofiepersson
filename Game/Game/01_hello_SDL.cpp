@@ -69,6 +69,26 @@ int main(int argc, char* args[])
 	auto toys = toyUpgrade->getToys();
 	auto toyAmountText = font.createText(to_string(toys), window.getRenderer());
 
+	auto heartImage = window.loadImage("img/heart.png");
+	heartImage->width = 25;
+	heartImage->height = 25;
+	heartImage->x = 90;
+	heartImage->y = 8;
+
+	auto bonePrice = boneUpgrade->getPrice();
+	auto bonePriceText = font.createText(to_string(bonePrice), window.getRenderer());
+
+	auto toyPrice = toyUpgrade->getPrice();
+	auto toyPriceText = font.createText(to_string(toyPrice), window.getRenderer());
+
+	auto priceText = font.createText("Price:", window.getRenderer());
+	priceText->x = 370;
+	priceText->y = 40;
+
+	auto priceText2 = font.createText("Price:", window.getRenderer());
+	priceText2->x = 370;
+	priceText2->y = 220;
+
 	// Get window to stay up
 	SDL_Event e{};
 	bool quit = false;
@@ -99,6 +119,16 @@ int main(int argc, char* args[])
 		toyAmountText->x = 450;
 		toyAmountText->y = 350;
 
+		bonePrice = boneUpgrade->getPrice();
+		bonePriceText = font.createText(to_string(bonePrice), window.getRenderer());
+		bonePriceText->x = 445;
+		bonePriceText->y = 40;
+
+		toyPrice = toyUpgrade->getPrice();
+		toyPriceText = font.createText(to_string(toyPrice), window.getRenderer());
+		toyPriceText->x = 445;
+		toyPriceText->y = 220;
+
 		while (SDL_PollEvent(&e)) {
 			for (auto gameObject : gameObjects) {
 				if (Button* button = dynamic_cast<Button*>(gameObject)) {
@@ -120,6 +150,11 @@ int main(int argc, char* args[])
 		window.render(heartCounterText.get());
 		window.render(boneAmountText.get());
 		window.render(toyAmountText.get());
+		window.render(heartImage.get());
+		window.render(bonePriceText.get());
+		window.render(toyPriceText.get());
+		window.render(priceText.get());
+		window.render(priceText2.get());
 
 		window.present();
 

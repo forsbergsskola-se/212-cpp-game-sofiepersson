@@ -21,5 +21,6 @@ public:
     void update() override;
     void handleEvent(SDL_Event* e) override;
     int getBones() { return owned; }
+    int getPrice() { return upgradeCost; }
 };
 
