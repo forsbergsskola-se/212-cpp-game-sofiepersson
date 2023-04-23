@@ -4,10 +4,10 @@
 #include <SDL_ttf.h>
 #include "Image.h"
 
-Font::Font(const char* path, const int size) :
+Font::Font(string path, const int size) :
 	success{} {
 	//Open the font
-	font = TTF_OpenFont(path, size);
+	font = TTF_OpenFont(path.c_str(), size);
 	if (font == nullptr)
 	{
 		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
@@ -22,11 +22,11 @@ Font::~Font() {
 	font = nullptr;
 }
 
-unique_ptr<Image> Font::createText(const char* text, SDL_Renderer* renderer)
+unique_ptr<Image> Font::createText(string text, SDL_Renderer* renderer)
 {
     SDL_Color textColor{ 0, 0, 0 };
     //Render text surface
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text, textColor);
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), textColor);
     if (textSurface == nullptr)
     {
         printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());

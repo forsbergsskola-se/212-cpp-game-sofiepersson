@@ -1,6 +1,7 @@
 #include "Window.h"
 #include <cstdio>
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 Window::Window(int width, int height) : success{} {
 	// Initialize SDL
@@ -33,6 +34,9 @@ Window::~Window() {
 
 	// Quit SDL subsystems
 	SDL_Quit();
+
+	// Quit SDL2_ttf
+	TTF_Quit();
 }
 
 void Window::render(Image* image) {

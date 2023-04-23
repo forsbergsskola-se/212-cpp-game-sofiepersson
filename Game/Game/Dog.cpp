@@ -4,7 +4,6 @@
 using namespace std;
 
 void Dog::update() {
-	cout << heartCount << endl;
 }
 
 void Dog::handleEvent(SDL_Event* e) {

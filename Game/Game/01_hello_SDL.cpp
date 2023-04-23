@@ -15,6 +15,7 @@ and may not be redistributed without written permission.*/
 #include "BoneUpgrade.h"
 #include "ToyUpgrade.h"
 #include "Font.h"
+#include <string>
 
 using namespace std;
 
@@ -59,7 +60,19 @@ int main(int argc, char* args[])
 	gameObjects.push_back(toyUpgrade);
 
 	Font font{ "fonts/Oswald-Bold.ttf", 28 };
-	auto text = font.createText("blah blah", window.getRenderer());
+	auto hearts = dog->getHeartCount();
+	auto heartCounterText = font.createText(to_string(hearts), window.getRenderer());
+	heartCounterText->x = 90;
+
+	auto bones = boneUpgrade->getBones();
+	auto boneAmountText = font.createText(to_string(bones), window.getRenderer());
+	boneAmountText->x = 450;
+	boneAmountText->y = 120;
+
+	auto toys = toyUpgrade->getToys();
+	auto toyAmountText = font.createText(to_string(toys), window.getRenderer());
+	toyAmountText->x = 450;
+	toyAmountText->y = 300;
 
 	// Get window to stay up
 	SDL_Event e{};
@@ -73,6 +86,23 @@ int main(int argc, char* args[])
 		for (auto gameObject : gameObjects) {
 			gameObject->update();
 		}
+
+		// Updates heart counter text
+		hearts = dog->getHeartCount();
+		heartCounterText = font.createText(to_string(hearts), window.getRenderer());
+		heartCounterText->x = 90;
+
+		// Updates owned bones counter text
+		bones = boneUpgrade->getBones();
+		boneAmountText = font.createText(to_string(bones), window.getRenderer());
+		boneAmountText->x = 450;
+		boneAmountText->y = 120;
+
+		// Updates owned toys counter text
+		toys = toyUpgrade->getToys();
+		toyAmountText = font.createText(to_string(toys), window.getRenderer());
+		toyAmountText->x = 450;
+		toyAmountText->y = 300;
 
 		while (SDL_PollEvent(&e)) {
 			for (auto gameObject : gameObjects) {
@@ -92,7 +122,9 @@ int main(int argc, char* args[])
 		for (auto gameObject : gameObjects) {
 			gameObject->render(&window);
 		}
-		window.render(text.get());
+		window.render(heartCounterText.get());
+		window.render(boneAmountText.get());
+		window.render(toyAmountText.get());
 
 		window.present();
 
