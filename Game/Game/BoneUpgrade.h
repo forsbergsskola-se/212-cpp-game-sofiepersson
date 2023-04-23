@@ -4,7 +4,7 @@
 class BoneUpgrade :
     public Button
 {
-    int x{400}, y{25}, width{100}, height{100};
+    int x{370}, y{75}, width{180}, height{90};
     Dog* dog;
     unsigned int upgradeCost{ 50 };
     unsigned int owned{};

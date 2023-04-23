@@ -4,13 +4,13 @@
 
 class Dog : public Button
 {
-    int width{ 200 };
-    int height{ 350 };
-    int x{ 25 }, y{ 40 };
+    int width{ 250 };
+    int height{ 400 };
+    int x{ 40 }, y{ 40 };
     unsigned int heartCount{};
     unsigned int heartsOnClick{ 1 };
 public:
-    Dog(Window* window) : Button("img/Ludde1.png", window) {
+    Dog(Window* window) : Button("img/Ludde.png", window) {
         image->width = width;
         image->height = height;
         image->x = x;

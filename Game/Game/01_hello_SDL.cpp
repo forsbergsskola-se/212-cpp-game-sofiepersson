@@ -62,17 +62,12 @@ int main(int argc, char* args[])
 	Font font{ "fonts/Oswald-Bold.ttf", 28 };
 	auto hearts = dog->getHeartCount();
 	auto heartCounterText = font.createText(to_string(hearts), window.getRenderer());
-	heartCounterText->x = 90;
 
 	auto bones = boneUpgrade->getBones();
 	auto boneAmountText = font.createText(to_string(bones), window.getRenderer());
-	boneAmountText->x = 450;
-	boneAmountText->y = 120;
 
 	auto toys = toyUpgrade->getToys();
 	auto toyAmountText = font.createText(to_string(toys), window.getRenderer());
-	toyAmountText->x = 450;
-	toyAmountText->y = 300;
 
 	// Get window to stay up
 	SDL_Event e{};
@@ -90,19 +85,19 @@ int main(int argc, char* args[])
 		// Updates heart counter text
 		hearts = dog->getHeartCount();
 		heartCounterText = font.createText(to_string(hearts), window.getRenderer());
-		heartCounterText->x = 90;
+		heartCounterText->x = 130;
 
 		// Updates owned bones counter text
 		bones = boneUpgrade->getBones();
 		boneAmountText = font.createText(to_string(bones), window.getRenderer());
 		boneAmountText->x = 450;
-		boneAmountText->y = 120;
+		boneAmountText->y = 165;
 
 		// Updates owned toys counter text
 		toys = toyUpgrade->getToys();
 		toyAmountText = font.createText(to_string(toys), window.getRenderer());
 		toyAmountText->x = 450;
-		toyAmountText->y = 300;
+		toyAmountText->y = 350;
 
 		while (SDL_PollEvent(&e)) {
 			for (auto gameObject : gameObjects) {

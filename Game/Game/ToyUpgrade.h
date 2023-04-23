@@ -4,7 +4,7 @@
 class ToyUpgrade :
     public Button
 {
-    int x{ 400 }, y{ 225 }, width{ 100 }, height{ 100 };
+    int x{ 370 }, y{ 255 }, width{ 180 }, height{ 90 };
     Dog* dog;
     unsigned int upgradeCost{ 75 };
     unsigned int owned{};
