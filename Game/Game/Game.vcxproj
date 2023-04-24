@@ -102,7 +102,9 @@
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x86\SDL2.dll" "$(TargetDir)SDL2.dll"
 copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x86\SDL2_image.dll" "$(TargetDir)SDL2_image.dll"
-copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x86\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"</Command>
+copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x86\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
+xcopy "$(ProjectDir)fonts" "$(TargetDir)fonts" /E /Y /I /R
+xcopy "$(ProjectDir)img" "$(TargetDir)img" /E /Y /I /R</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,7 +127,9 @@ copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x86\SDL2_ttf.dll" "$(TargetDir)SD
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x86\SDL2.dll" "$(TargetDir)SDL2.dll"
 copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x86\SDL2_image.dll" "$(TargetDir)SDL2_image.dll"
-copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x86\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"</Command>
+copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x86\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
+xcopy "$(ProjectDir)fonts" "$(TargetDir)fonts" /E /Y /I /R
+xcopy "$(ProjectDir)img" "$(TargetDir)img" /E /Y /I /R</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -144,7 +148,9 @@ copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x86\SDL2_ttf.dll" "$(TargetDir)SD
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2.dll"
 copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(TargetDir)SDL2_image.dll"
-copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"</Command>
+copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
+xcopy "$(ProjectDir)fonts" "$(TargetDir)fonts" /E /Y /I /R
+xcopy "$(ProjectDir)img" "$(TargetDir)img" /E /Y /I /R</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -167,7 +173,9 @@ copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(TargetDir)SD
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2.dll"
 copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(TargetDir)SDL2_image.dll"
-copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"</Command>
+copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
+xcopy "$(ProjectDir)fonts" "$(TargetDir)fonts" /E /Y /I /R
+xcopy "$(ProjectDir)img" "$(TargetDir)img" /E /Y /I /R</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
